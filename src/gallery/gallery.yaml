@@ -92,20 +92,6 @@ images:
       collections:
         - nature
     exif: {}
-  - path: rassemblements/DSC_5026.JPG
-    meta:
-      title: Dsc 5026
-      description: ''
-      collections:
-        - rassemblements
-    exif:
-      captureDate: 2025-11-02T12:54:00.000Z
-      fNumber: 4
-      focalLength: 35
-      iso: 100
-      model: NIKON D7500
-      shutterSpeed: 800
-      lensModel: 35.0 mm f/1.8
   - path: street/DSC_5026.JPG
     meta:
       title: Dsc 5026
@@ -120,3 +106,10 @@ images:
       model: NIKON D7500
       shutterSpeed: 800
       lensModel: 35.0 mm f/1.8
+  - path: nature/ChatGPT Image 28 oct. 2025, 19_03_12.png
+    meta:
+      title: Chatgpt Image 28 Oct 2025 19 03 12
+      description: ''
+      collections:
+        - nature
+    exif: {}
