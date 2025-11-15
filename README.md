@@ -125,45 +125,39 @@ other collection.
 
 ### Managing Photos with Pages CMS
 
-This project is integrated with [Pages CMS](https://pagescms.org/), allowing clients to easily upload and manage images through a web interface without needing to edit files directly.
+This project is integrated with [Pages CMS](https://pagescms.org/), allowing clients to easily upload images through a web interface. The `gallery.yaml` file is automatically generated from uploaded images.
 
 #### Getting Started with Pages CMS
 
 1. **Connect your repository**: Visit [Pages CMS](https://pagescms.org/) and connect your GitHub repository
 2. **Select your branch**: Choose the branch where you want to manage content (typically `main`)
-3. **Access the CMS**: Once connected, you'll see the Pages CMS interface with access to:
-   - **Media Library**: Upload images to collection folders (`src/gallery/<collection>/`)
-   - **Gallery Configuration**: Edit image metadata (titles, descriptions, collections)
+3. **Access the Media Library**: Once connected, you'll see the Media section where you can upload images to collection folders
 
 #### Uploading Images
 
 1. Navigate to the **Media** section in Pages CMS
-2. Select a collection folder (e.g., `nature`, `travel`, `street`) or create a new one
+2. Browse to a collection folder (e.g., `nature`, `travel`, `street`) or navigate to `src/gallery/` to create a new collection folder
 3. Upload your images directly to the folder
-4. Images will be automatically optimized and added to `gallery.yaml` when you commit
-
-#### Editing Image Metadata
-
-1. Navigate to **Gallery Configuration** in Pages CMS
-2. Edit the `gallery.yaml` file to:
-   - Update image titles and descriptions
-   - Assign images to collections (including "featured")
-   - Add custom fields like `filmType` and `analog` for analog photos
-   - Manage collection names
+4. Commit your changes - images will be automatically processed
 
 #### Automatic Processing
 
-When you upload or modify images through Pages CMS:
+When you upload images through Pages CMS and commit:
 
 1. **On commit**: GitHub Actions automatically detects image changes
 2. **Image optimization**: Images are resized and compressed (max 1920px, 80% quality)
-3. **Gallery update**: The `gallery.yaml` file is automatically regenerated with:
-   - New images added with auto-generated metadata
-   - EXIF data extracted from images
-   - Existing metadata preserved (your edits are maintained)
+3. **Gallery generation**: The `gallery.yaml` file is automatically regenerated with:
+   - New images added with auto-generated titles (from filename)
+   - EXIF data extracted from images (camera settings, capture date, etc.)
+   - Collections automatically created from folder structure
+   - Images assigned to their collection folder
 4. **Site rebuild**: The site is automatically rebuilt and deployed
 
-**Note**: The workflow uses `[skip ci]` in commit messages when updating `gallery.yaml` to prevent infinite loops. Your manual edits to `gallery.yaml` are preserved during regeneration.
+#### Editing Image Metadata
+
+To edit image metadata (titles, descriptions, collections, etc.), edit the `src/gallery/gallery.yaml` file directly in your repository. The metadata will be preserved when new images are added, as the generator merges existing metadata with new entries.
+
+**Note**: The workflow uses `[skip ci]` in commit messages when updating `gallery.yaml` to prevent infinite loops.
 
 ## 🛠️ Built With
 
