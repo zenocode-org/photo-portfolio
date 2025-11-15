@@ -125,13 +125,15 @@ other collection.
 
 ### Managing Photos with Pages CMS
 
-This project is integrated with [Pages CMS](https://pagescms.org/), allowing clients to easily upload images through a web interface. The `gallery.yaml` file is automatically generated from uploaded images.
+This project is integrated with [Pages CMS](https://pagescms.org/), allowing clients to easily upload images and manage gallery metadata through a web interface.
 
 #### Getting Started with Pages CMS
 
 1. **Connect your repository**: Visit [Pages CMS](https://pagescms.org/) and connect your GitHub repository
 2. **Select your branch**: Choose the branch where you want to manage content (typically `main`)
-3. **Access the Media Library**: Once connected, you'll see the Media section where you can upload images to collection folders
+3. **Access the CMS**: Once connected, you'll see:
+   - **Media Library**: Upload images to collection folders (`src/gallery/<collection>/`)
+   - **Gallery Configuration**: Edit the `gallery.yaml` file to manage metadata
 
 #### Uploading Images
 
@@ -139,6 +141,16 @@ This project is integrated with [Pages CMS](https://pagescms.org/), allowing cli
 2. Browse to a collection folder (e.g., `nature`, `travel`, `street`) or navigate to `src/gallery/` to create a new collection folder
 3. Upload your images directly to the folder
 4. Commit your changes - images will be automatically processed
+
+#### Editing Image Metadata
+
+1. Navigate to **Gallery Configuration** in Pages CMS
+2. Edit the `gallery.yaml` file to:
+   - Update image titles and descriptions
+   - Assign images to collections (including "featured")
+   - Add custom fields like `filmType` and `analog` for analog photos
+   - Manage collection names
+3. Your edits are preserved when new images are added (via merge settings)
 
 #### Automatic Processing
 
@@ -151,13 +163,10 @@ When you upload images through Pages CMS and commit:
    - EXIF data extracted from images (camera settings, capture date, etc.)
    - Collections automatically created from folder structure
    - Images assigned to their collection folder
+   - **Existing metadata preserved** (your manual edits are maintained)
 4. **Site rebuild**: The site is automatically rebuilt and deployed
 
-#### Editing Image Metadata
-
-To edit image metadata (titles, descriptions, collections, etc.), edit the `src/gallery/gallery.yaml` file directly in your repository. The metadata will be preserved when new images are added, as the generator merges existing metadata with new entries.
-
-**Note**: The workflow uses `[skip ci]` in commit messages when updating `gallery.yaml` to prevent infinite loops.
+**Note**: The workflow uses `[skip ci]` in commit messages when updating `gallery.yaml` to prevent infinite loops. Your manual edits to `gallery.yaml` are preserved during regeneration thanks to the merge settings.
 
 ## 🛠️ Built With
 
