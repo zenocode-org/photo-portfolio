@@ -15,6 +15,7 @@ Ideal for photographers who want to showcase their work through a sleek, perform
 - Image zoom capabilities
 - Automatic deployment to GitHub pages
 - Script to automatically create a gallery from images
+- **Pages CMS integration** - Web-based interface for clients to upload and manage images
 
 ## 🚀 Getting Started
 
@@ -121,6 +122,48 @@ Original images are automatically backed up to `backup/<timestamp>/` before proc
 
 "featured" is a builtin collection, and images can be added to it by specifying it in the collections parameter like any
 other collection.
+
+### Managing Photos with Pages CMS
+
+This project is integrated with [Pages CMS](https://pagescms.org/), allowing clients to easily upload and manage images through a web interface without needing to edit files directly.
+
+#### Getting Started with Pages CMS
+
+1. **Connect your repository**: Visit [Pages CMS](https://pagescms.org/) and connect your GitHub repository
+2. **Select your branch**: Choose the branch where you want to manage content (typically `main`)
+3. **Access the CMS**: Once connected, you'll see the Pages CMS interface with access to:
+   - **Media Library**: Upload images to collection folders (`src/gallery/<collection>/`)
+   - **Gallery Configuration**: Edit image metadata (titles, descriptions, collections)
+
+#### Uploading Images
+
+1. Navigate to the **Media** section in Pages CMS
+2. Select a collection folder (e.g., `nature`, `travel`, `street`) or create a new one
+3. Upload your images directly to the folder
+4. Images will be automatically optimized and added to `gallery.yaml` when you commit
+
+#### Editing Image Metadata
+
+1. Navigate to **Gallery Configuration** in Pages CMS
+2. Edit the `gallery.yaml` file to:
+   - Update image titles and descriptions
+   - Assign images to collections (including "featured")
+   - Add custom fields like `filmType` and `analog` for analog photos
+   - Manage collection names
+
+#### Automatic Processing
+
+When you upload or modify images through Pages CMS:
+
+1. **On commit**: GitHub Actions automatically detects image changes
+2. **Image optimization**: Images are resized and compressed (max 1920px, 80% quality)
+3. **Gallery update**: The `gallery.yaml` file is automatically regenerated with:
+   - New images added with auto-generated metadata
+   - EXIF data extracted from images
+   - Existing metadata preserved (your edits are maintained)
+4. **Site rebuild**: The site is automatically rebuilt and deployed
+
+**Note**: The workflow uses `[skip ci]` in commit messages when updating `gallery.yaml` to prevent infinite loops. Your manual edits to `gallery.yaml` are preserved during regeneration.
 
 ## 🛠️ Built With
 
